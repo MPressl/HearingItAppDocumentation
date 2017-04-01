@@ -1,0 +1,13 @@
+%!TEX root = ../dokumentation.tex
+\chapter{Speech-To-Text-Konvertierung}
+\section{Der Android Speech Recognition Client}
+\section{Speech-To-Text Konvertierung durch die Google Cloud API}
+Die Google Streaming Speech Cloud API definiert in ihrer Spezifikation sowohl die Art der Authentifizierung, als auch die verschiedenen Zugriffsmöglichkeiten. Für Java empfiehlt sich eine Authentifizierung über die Oauth2 Methode und die Kommunikation über Google Remote Procedure Calls (grpc).\par
+ Der Begriff Remote Procedures kommt aus dem Bereich verteilter Systeme, bei denen ein Programm auf einem Client-Rechner auf einem Server laufende Programmteile ausführen will.\\
+Um dies zu realisieren, verfügt der Client über einen sogenannten method stub. Dieser Stub ist eine Dummymethode mit gleicher Signatur wie die produktive auf dem Server laufende Methode. Die Dummymethode ruft über einen bestehenden Channel zum Server dann die produktive Methode mit den übergebenen Parametern auf und wartet dann auf den Rückgabewert der Servermethode. Hat sie den Wert erhalten, gibt sie Ihn zurück an das aufrufende Unterprogramm. Der eine Remote Procedure ausführende Client kann beziehungsweise muss sich somit nicht selbst um die Client-Server-Kommunikation kümmern, wie es beim REST-Modell der Fall ist, und bekommt im Bestfall nicht einmal mit, dass die aufgerufene Methode extern ausgeführt wurde.\par
+Google bietet für das RPC Konzept eine library ein, welche als Dependency zum Projekt hinzugefügt werden muss. Für die Speech API wird die library com.google.cloud.speech.v1beta1, die RPC Komponenten befinden sich im Package com.google.cloud.speech.v1beta1.SpeechGrpc.
+Der SpeecGrpc Stub kann über die static Methode SpeechGrpc.newStub(ManagedChannel channel) erzeugt werden. Diese Methode gibt eine Instanz der Klasse SpeechGrpc.SpeechStub zurück. 
+
+
+
+\section{Der TextFieldRecorder / Konvertierer}

@@ -1,0 +1,47 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {ngerman}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{II}{chapter*.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{III}{chapter*.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Listings}{IV}{chapter*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Einf\IeC {\"u}hrung}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Struktur}{2}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Main Activity}{2}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Constants Klasse}{4}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Interface f\IeC {\"u}r AR-Glass-Printer}{4}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Interface f\IeC {\"u}r Speech-To-Text-Konvertierer}{4}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Graphical User Interfaces}{5}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}dummy}{5}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Canvas Animationen}{6}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Dummy}{6}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}AR-Glass-Printer Implementierungen}{7}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Die Klasse AbstractPrinter}{7}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Support der GlassUp AR Brille}{7}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Der TextField Printer}{7}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Speech-To-Text-Konvertierung}{8}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Der Android Speech Recognition Client}{8}{section.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Speech-To-Text Konvertierung durch die Google Cloud API}{8}{section.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Der TextFieldRecorder / Konvertierer}{8}{section.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Anhang}{10}{chapter*.5}
