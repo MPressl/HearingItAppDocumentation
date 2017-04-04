@@ -1,0 +1,97 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{anyt/global/}
+    \entry{buck_radiologie_2013}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2a20cb03bfe0ecae54b4c54aabf10e8c}{%
+           family={Buck},
+           familyi={B\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{2a20cb03bfe0ecae54b4c54aabf10e8c}
+      \strng{fullhash}{2a20cb03bfe0ecae54b4c54aabf10e8c}
+      \strng{authornamehash}{2a20cb03bfe0ecae54b4c54aabf10e8c}
+      \strng{authorfullhash}{2a20cb03bfe0ecae54b4c54aabf10e8c}
+      \field{labelalpha}{Buc13}
+      \field{sortinit}{B}
+      \field{sortinithash}{5f6fa000f686ee5b41be67ba6ff7962d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Friedrich H.W. Heuck trat 1972 in die Redaktion des 1957 gegrtindeten Handbuchs der Medjzinischen Radiologie des Springer-Verlags ein - {geƯ} meinsam mit dem viel zu {frUh} verstorbenen Klaus Ranniger. Er hat die Fortfiihrung dieses Handbuches in def Reihe Medical Radiology - {DiaƯ} gnostic Imaging and Radiation Oncology von 1982 an energisch gefordert {UDd} mich dariiber hinaus bei meinen Bemiihungen urn den Ausbau dec Veroffentlichungen aus dem Gesamtgebiet dec Medizinischen Radiologie in unserem Verlage tatkraftig unterstiitzt. Es ist hier nieht dec Ort, aile einschlagigen Publikationen aufzuzahle.}
+      \field{day}{7}
+      \field{isbn}{978-3-642-80128-0}
+      \field{langid}{german}
+      \field{month}{3}
+      \field{note}{Google-Books-{ID}: {mjOmBgAAQBAJ}}
+      \field{pagetotal}{280}
+      \field{shorttitle}{Radiologie Träger des Fortschritts}
+      \field{title}{Radiologie Träger des Fortschritts: Festschrift für Friedrich H.W. Heuck}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \keyw{Medical / Allied Health Services / Imaging Technologies,Medical / Biochemistry,Medical / Clinical Medicine}
+    \endentry
+    \entry{kipper_augmented_2012}{book}{}
+      \name{author}{2}{}{%
+        {{hash=887bd81f6577667d2d430424d105fcbd}{%
+           family={Kipper},
+           familyi={K\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4daa26fffd190fb63f70538eec54b9c6}{%
+           family={Rampolla},
+           familyi={R\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{632d2c8f51ae10d708c70f2b9330a527}
+      \strng{fullhash}{632d2c8f51ae10d708c70f2b9330a527}
+      \strng{authornamehash}{632d2c8f51ae10d708c70f2b9330a527}
+      \strng{authorfullhash}{632d2c8f51ae10d708c70f2b9330a527}
+      \field{labelalpha}{KR12}
+      \field{sortinit}{K}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{With the explosive growth in mobile phone usage and rapid rise in search engine technologies over the last decade, augmented reality ({AR}) is poised to be one of this decade's most disruptive technologies, as the information that is constantly flowing around us is brought into view, in real-time, through augmented reality. In this cutting-edge book, the authors outline and discuss never-before-published information about augmented reality and its capabilities. With coverage of mobile, desktop, developers, security, challenges, and gaming, this book gives you a comprehensive understanding of what augmented reality is, what it can do, what is in store for the future and most importantly: how to benefit from using {AR} in our lives and careers.Educates readers how best to use augmented reality regardless of {industryProvides} an in-depth understanding of {AR} and ideas ranging from new business applications to new crime fighting methods Includes actual examples and case studies from both private and government application}
+      \field{day}{31}
+      \field{isbn}{978-1-59749-734-3}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{note}{Google-Books-{ID}: {OyGiW}2OYI8AC}
+      \field{pagetotal}{177}
+      \field{shorttitle}{Augmented Reality}
+      \field{title}{Augmented Reality: An Emerging Technologies Guide to {AR}}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \keyw{Computers / Computer Graphics,Computers / Security / General,Computers / Virtual Worlds}
+    \endentry
+  \endsortlist
+  \missing{_sterbefaellelebenserwartung_lebenserw_deutschl.png_????}
+\endrefsection
+\endinput
+
