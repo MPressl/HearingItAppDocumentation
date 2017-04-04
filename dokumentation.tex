@@ -53,8 +53,13 @@
 			\setcounter{tocdepth}{1}
 			%für die Anzeige von Unterkapiteln im Inhaltsverzeichnis
 			%\setcounter{tocdepth}{2}
-			
+			\hypersetup{%
+				linkcolor=black
+			}
 			\tableofcontents
+			\hypersetup{%
+				linkcolor=LinkColor
+			}
 			\clearpage
 		\endgroup
 	\end{spacing}
@@ -90,7 +95,7 @@
 %06Kapitel: Speech To Text Konvertierer
 
 	% Inhalt
-	\foreach \i in {01,02,03,04,05,06,07,08,09,...,99} {%
+	\foreach \i in {01} {%
 		\edef\FileName{content/\i kapitel}%
 			\IfFileExists{\FileName}{%
 				\input{\FileName}
