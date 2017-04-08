@@ -21,6 +21,26 @@ Die Methode startPrinting() erzeugt einen neuen Thread, welcher innerhalb einer 
 Innerhalb der Schleife wird überprüft, ob der Message Buffer neue Elemente zur Entnahme enthält. Ist dies der Fall, wird erfolgt ein Aufruf der abstrakten Methode printMessage(String message), welche die Nachricht im gerätespezifischen Protokol an das verbundene AR-Gerät sendet. Diese Methode muss für jeden spezifischen AR-Printer implementier eigens implementiert werden. Ein boolscher Rückgabewert gibt Auskunft über den Erfolg des Sendens der Nachricht. Liefert die Überprüfung der isProcessing-Variable false zurück, so deutet dies auf das Ende des Vorgangs hin. Um Ausgaben nicht apprupt zu beenden, wird neben des isProcessing-Attributes auch noch der Inhalt des Message Buffers geprüft. Is isProcessing zwar false, aber der Message Buffer enthält noch Elemente, die zur Ausgabe in Auftrag gegeben wurden, fährt der Printing-Thread fort, bis alle Ausgaben getätigt wurde.\\
 Die Methode stopPrinting() setzt das boolsche Attribut isProcessing auf false. Dies führt zum Beenden der Schleife innerhalb des Printing-Threads und somit zur Beendigung des Threads an sich.
 \section{Support der GlassUp AR Brille}
+\begin{figure}{l}{1\linewidth}
+	\includegraphics[width=\linewidth]{../images/glassUpGlasses.jpg}
+	\caption{Die GlassUp Augmented Reality Brille\cite{home}}
+	\label{fig:GlassUpGlasses}
+\end{figure}
+\paragraph{Die GlassUp Brille}
+GlassUp ist ein italienisches Unternehmen, welches eine 65 Gramm \cite{faq} schwere Augmented Reality Brille herstellt. Sie ist in \ref{fig:GlassUpGlasses} abgebildet. Die Brille befindet sich zwar noch in der Entwicklung, kann aber alles bieten, was zur Funktionalität unserer Applikation notwendig ist:\\
+Nach eigener Aussage legt die Firma Wert darauf, eine unauffällige Brille zu produzieren, welche weniger einen Multimedialen Gegenstand als einen generellen Alltagshelfer darstellt \cite{home}.\\
+So besitzt diese Brille keine Kamera, wie beispielsweise die von Google angebotene Alternative\cite{google glasses}. Eine Kamera gefährdet den Einsatz der Augmented Reality Brille insoweit, dass nach Paragraph 90 des Telekommunikationsgesetzes der Besitz von Gegenständen, "die ihrer Form nach einen anderen Gegenstand vortäuschen oder die mit Gegenständen des täglichen Gebrauchs verkleidet sind und auf Grund dieser Umstände [...] dazu bestimmt sind, das [...] Bild eines anderen von diesem unbemerkt aufzunehmen."\\
+Auch ist die GlassUp Brille mit einem Preis von 299 Euro \cite{faq} noch erschwinglich. Die frei erhältliche SDK enthält außerdem einen Emulator, wodurch ein Brillenkauf für Entwicklungszwecke nicht von Anfang an zwangsläufig notwendig ist \cite{SDK}.\\
+Die Brille wird durch die Bluetooth-Technik mit einem Mobiltelephon verbunden und Projeziert Texte und einfache Grafiken in der Farbe grün in den Mittelpunkt des Sichtfelds des Anwenders.
+Sie verfügt über ein Touchpad mit drei Eingabeknöpfen, durch die Smartphone-Anwendungen alternativ gesteuert werden können.
+Der niedrige Preis, sowie der kompakte aber ausreichende Funktionsumfang führten zur Entscheidung, diese Brille als erste zu Unterstützen. Erweiterungen zum Unterstützen weiterer Brillen, sind durch den modularen Aufbau der Applikation allerdings ohne weiteres möglich.
+
+\paragraph{Der GlassUp-Connector}
+
+
+
+
+
  \begin{lstlisting}
 [caption={Die Methode addMessageToLineList(String Message) der Klasse GlassUpPrinter}\label{lst:GlassUpPrinter: addMessageToLineList(String message)},captionpos=t] 
 /**

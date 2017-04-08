@@ -2,46 +2,72 @@
 \defcounter {refsection}{0}\relax 
 \select@language {ngerman}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{II}{chapter*.2}
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{III}{chapter*.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{III}{chapter*.3}
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{IV}{chapter*.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Listings}{IV}{chapter*.4}
+\contentsline {chapter}{\nonumberline Listings}{V}{chapter*.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Einf\IeC {\"u}hrung}{1}{chapter.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Struktur}{2}{chapter.2}
+\contentsline {chapter}{\numberline {2}Struktur}{3}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Main Activity}{2}{section.2.1}
+\contentsline {section}{\numberline {2.1}Main Activity}{3}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Constants Klasse}{4}{section.2.2}
+\contentsline {section}{\numberline {2.2}Constants Klasse}{5}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Interface f\IeC {\"u}r AR-Glass-Printer}{4}{section.2.3}
+\contentsline {section}{\numberline {2.3}Interface f\IeC {\"u}r Augmented-Reality-Brillen-Printer}{5}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Interface f\IeC {\"u}r Speech-To-Text-Konvertierer}{4}{section.2.4}
+\contentsline {paragraph}{\nonumberline Interface-Methoden}{6}{figure.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Graphical User Interfaces}{5}{chapter.3}
+\contentsline {section}{\numberline {2.4}Interface f\IeC {\"u}r Speech-To-Text-Konvertierer}{6}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}dummy}{5}{section.3.1}
+\contentsline {chapter}{\numberline {3}Graphical User Interfaces}{7}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Canvas Animationen}{6}{chapter.4}
+\contentsline {section}{\numberline {3.1}ActionBar}{7}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Dummy}{6}{section.4.1}
+\contentsline {section}{\numberline {3.2}NavigationView als Sidebar}{7}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}AR-Glass-Printer Implementierungen}{7}{chapter.5}
+\contentsline {section}{\numberline {3.3}Buttons / Buttondesigning}{7}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Die Klasse AbstractPrinter}{7}{section.5.1}
+\contentsline {section}{\numberline {3.4}Spinner}{7}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Support der GlassUp AR Brille}{7}{section.5.2}
+\contentsline {section}{\numberline {3.5}TextViews}{7}{section.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Der TextField Printer}{7}{section.5.3}
+\contentsline {section}{\numberline {3.6}EventListener}{7}{section.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Speech-To-Text-Konvertierung}{8}{chapter.6}
+\contentsline {section}{\numberline {3.7}SurfaceView f\IeC {\"u}r Animation}{7}{section.3.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Der Android Speech Recognition Client}{8}{section.6.1}
+\contentsline {chapter}{\numberline {4}Canvas Animationen}{8}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Speech-To-Text Konvertierung durch die Google Cloud API}{8}{section.6.2}
+\contentsline {section}{\numberline {4.1}DrawingThread / SoundAnimationThread}{8}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Der TextFieldRecorder / Konvertierer}{8}{section.6.3}
+\contentsline {section}{\numberline {4.2}Die Methode \IeC {\quotedblbase }draw\IeC {\textquotedblleft }}{8}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Anhang}{10}{chapter*.5}
+\contentsline {section}{\numberline {4.3}Die Methode \IeC {\quotedblbase }update\IeC {\textquotedblleft }}{8}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Soundanimation durch animierte Canvas Komponenten}{8}{section.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}AR-Glass-Printer Implementierungen}{9}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Die Klasse AbstractPrinter}{9}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Implementierte Methoden}{10}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Support der GlassUp AR Brille}{10}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Die GlassUp Brille}{10}{section*.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Der TextField Printer}{13}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Speech-To-Text-Konvertierung}{14}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Der Android Speech Recognition Client}{14}{section.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Speech-To-Text Konvertierung durch die Google Cloud API}{14}{section.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Der TextFieldRecorder / Konvertierer}{14}{section.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Literatur}{15}{chapter*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Anhang}{16}{chapter*.9}

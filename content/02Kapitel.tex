@@ -40,5 +40,17 @@ notifyStopRecord()\\
 In der Klasse Constants werden globale Applikationskonstanten abgelegt. So gibt es für jede IRecorder-Implementierung einen Integer Wert, welcher den Recorder repräsentiert. Außerdem gibt es für jeden Recorder eine beschreibende String-Variable. Eine Map, welche beim start der Anwendung erzeugt wird, bringt die String-Werte mit den jeweiligen Int-Werten in Verbindung. Analog dazu besteht die selbe Struktur für Instanzen des Typs IPrinter, die unterstützten AR-Printer verwalten zu können.
 
 
-\section{Interface für AR-Glass-Printer}
+\section{Interface für Augmented-Reality-Brillen-Printer}
+Das Interface IPrinter definiert ein Interface, welches den gesamten Kommunikationsverlauf zwischen MainActivity und dem Augmented Reality Gerätes ermöglicht. Für den AR-Connector wurde ein Interface erzeugt um dem Erweiterbarkeitsparadigma von Software gerecht zu werden:\\
+Die Klasse MainActivity ist mit einer Instanz der Klasse IPrinter, also einer Klasse, welche das Interface IPrinter implementiert, assoziiert. Innerhalb der Klasse MainActivity werden ausschließlich Methoden des Interfaces aufgerufen, keine Methoden der Implementation selbt. Aus diesem folgt, dass um ein weiteres Augmented Realitty Gerät zu unterstützen, lediglich eine einzelne neue Klasse implementiert werden muss, welche das IPrinter-Interface implementiert und der Klasse MainActivity hinzugefügt werden muss. Durch das Interface wird sichergestellt, dass alle Implementierungen über den selben Mindestmethodenumfang verfügen und Aufrufe innerhalb dieses Umfangs von allen Implementierungen verarbeitet werden können.
+\paragraph{Interface-Methoden}\\
+\begin{wrapfigure}{l}{0.6\linewidth}
+	\includegraphics[width=\linewidth]{../images/iconnector.jpg}
+	\caption{Interface für Augmented Reality Gerät Konnektoren}
+	\label{fig:IConnector}
+\end{wrapfigure}
+Das Interface verlangt die im Klassendiagramm \ref{IConnector} dargestellten Methoden von seinen Erben.\\
+Die Methode connect() wird nach der Initialisierung einer neuen Connector Instanz von der MainActivity aufgerufen. Diese Methode, versucht eine Verbindung zu einem Augmented Reality Gerät aufzubauen. Ihr boolscher Rückgabewert gibt Auskunft über den Erfolg des Verbindungsaufbaus.
+Die startPrinting()-Methode versetzt den Connector in den Ausgabemodus. In diesem Zustand, wartet der Connector auf Nachrichten, die von der MainActivity Klasse durch die Methode addToMessageBuffer() in seinem Nachrichtenspeicher abgelegt werden und sendet diese an das Augmented Reality Gerät.\\
+Die Methode stopPrinting() beendet diesen Zustand und mit der shutdown() Methode wird die Verbindung der App zum Augmented Reality Gerät beendet. Physikalisch kann die Verbindung dennoch weiterbestehen. Andere, Connectorspezifische Aktionen, welche bei Verbindungsende fällig werden, können ebenfalls in der shutdown()-Methode durchgeführt werden.
 \section{Interface für Speech-To-Text-Konvertierer}

@@ -2145,6 +2145,17 @@
     <bcf:datasource type="file" datatype="bibtex">bibliographie.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="3">buck_radiologie_2013</bcf:citekey>
+    <bcf:citekey order="4">kipper_augmented_2012</bcf:citekey>
+    <bcf:citekey order="5">home</bcf:citekey>
+    <bcf:citekey order="6">home</bcf:citekey>
+    <bcf:citekey order="7">faq</bcf:citekey>
+    <bcf:citekey order="8">home</bcf:citekey>
+    <bcf:citekey order="9">google glasses</bcf:citekey>
+    <bcf:citekey order="10">faq</bcf:citekey>
+    <bcf:citekey order="11">SDK</bcf:citekey>
+    <bcf:citekey order="12">home</bcf:citekey>
+    <bcf:citekey order="13">home</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="anyt/global/" type="entry" sortscheme="anyt" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>
