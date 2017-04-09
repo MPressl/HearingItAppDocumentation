@@ -43,7 +43,7 @@ In der Klasse Constants werden globale Applikationskonstanten abgelegt. So gibt 
 \section{Interface für Augmented-Reality-Brillen-Printer}
 Das Interface IPrinter definiert ein Interface, welches den gesamten Kommunikationsverlauf zwischen MainActivity und dem Augmented Reality Gerätes ermöglicht. Für den AR-Connector wurde ein Interface erzeugt um dem Erweiterbarkeitsparadigma von Software gerecht zu werden:\\
 Die Klasse MainActivity ist mit einer Instanz der Klasse IPrinter, also einer Klasse, welche das Interface IPrinter implementiert, assoziiert. Innerhalb der Klasse MainActivity werden ausschließlich Methoden des Interfaces aufgerufen, keine Methoden der Implementation selbt. Aus diesem folgt, dass um ein weiteres Augmented Realitty Gerät zu unterstützen, lediglich eine einzelne neue Klasse implementiert werden muss, welche das IPrinter-Interface implementiert und der Klasse MainActivity hinzugefügt werden muss. Durch das Interface wird sichergestellt, dass alle Implementierungen über den selben Mindestmethodenumfang verfügen und Aufrufe innerhalb dieses Umfangs von allen Implementierungen verarbeitet werden können.
-\paragraph{Interface-Methoden}\\
+\paragraph{Interface-Methoden}
 \begin{wrapfigure}{l}{0.6\linewidth}
 	\includegraphics[width=\linewidth]{../images/iconnector.jpg}
 	\caption{Interface für Augmented Reality Gerät Konnektoren}

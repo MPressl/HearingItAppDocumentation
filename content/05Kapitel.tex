@@ -12,7 +12,7 @@ Jeder AR-Printer ist für die Dauer einer Verbindung mit dem ihm zugeteilten Ger
 \par
 Nachdem über das User Interface ein verfügbarer AR-Printer gewählt wurde, erzeugt eine Factory Klasse die jeweilige Printer-Instanz, welche im Konstruktor versucht eine Verbindung zum AR-Gerät aufzubauen. Ist der Verbindungsaufbau nicht möglich, wird der User über die fehlende Verbindung benachrichtigt und der Start-Record-Button deaktiviert, bis eine Verbindung zum Gerät hergestellt wurde oder vom User ein anderer AR-Printer gewählt wird.
 
-\section{Die Klasse AbstractPrinter}
+\section{Die Klasse AbstractPrinter}\label{abstractprinter}
 Die Klasse AbstractPrinter implementiert das Interface IPrinter und abstrahiert gemeinsames Verhalten aller AR-Printer. Die Implementierung eines spezifischen AR-Printers erfolgt über die Ableitung dieser Klasse und nicht über das Interface direkt. Dies dient der Vermeidung von Fehlern und der Vereinheitlichung der Arbeitsweise von unterschiedlichen Implementierungen.\\
 \paragraph{Implementierte Methoden}
 Während der Verbindungsauf- beziehungsweise -abbau geräte- und somit implementierungsspezifisch sind, kann das Verhalten der Methoden startPrinting(), addToMessageBuffer(String message),  und stopPrinting() Geräteübergreifend implementiert werden.\\
@@ -21,76 +21,235 @@ Die Methode startPrinting() erzeugt einen neuen Thread, welcher innerhalb einer 
 Innerhalb der Schleife wird überprüft, ob der Message Buffer neue Elemente zur Entnahme enthält. Ist dies der Fall, wird erfolgt ein Aufruf der abstrakten Methode printMessage(String message), welche die Nachricht im gerätespezifischen Protokol an das verbundene AR-Gerät sendet. Diese Methode muss für jeden spezifischen AR-Printer implementier eigens implementiert werden. Ein boolscher Rückgabewert gibt Auskunft über den Erfolg des Sendens der Nachricht. Liefert die Überprüfung der isProcessing-Variable false zurück, so deutet dies auf das Ende des Vorgangs hin. Um Ausgaben nicht apprupt zu beenden, wird neben des isProcessing-Attributes auch noch der Inhalt des Message Buffers geprüft. Is isProcessing zwar false, aber der Message Buffer enthält noch Elemente, die zur Ausgabe in Auftrag gegeben wurden, fährt der Printing-Thread fort, bis alle Ausgaben getätigt wurde.\\
 Die Methode stopPrinting() setzt das boolsche Attribut isProcessing auf false. Dies führt zum Beenden der Schleife innerhalb des Printing-Threads und somit zur Beendigung des Threads an sich.
 \section{Support der GlassUp AR Brille}
-\begin{figure}{l}{1\linewidth}
-	\includegraphics[width=\linewidth]{../images/glassUpGlasses.jpg}
+\begin{figure}{\linewidth pt}
+	\includegraphics[width=\linewidth]{../images/glassUpGlasses.JPG}
 	\caption{Die GlassUp Augmented Reality Brille\cite{home}}
 	\label{fig:GlassUpGlasses}
 \end{figure}
 \paragraph{Die GlassUp Brille}
 GlassUp ist ein italienisches Unternehmen, welches eine 65 Gramm \cite{faq} schwere Augmented Reality Brille herstellt. Sie ist in \ref{fig:GlassUpGlasses} abgebildet. Die Brille befindet sich zwar noch in der Entwicklung, kann aber alles bieten, was zur Funktionalität unserer Applikation notwendig ist:\\
-Nach eigener Aussage legt die Firma Wert darauf, eine unauffällige Brille zu produzieren, welche weniger einen Multimedialen Gegenstand als einen generellen Alltagshelfer darstellt \cite{home}.\\
-So besitzt diese Brille keine Kamera, wie beispielsweise die von Google angebotene Alternative\cite{google glasses}. Eine Kamera gefährdet den Einsatz der Augmented Reality Brille insoweit, dass nach Paragraph 90 des Telekommunikationsgesetzes der Besitz von Gegenständen, "die ihrer Form nach einen anderen Gegenstand vortäuschen oder die mit Gegenständen des täglichen Gebrauchs verkleidet sind und auf Grund dieser Umstände [...] dazu bestimmt sind, das [...] Bild eines anderen von diesem unbemerkt aufzunehmen."\\
-Auch ist die GlassUp Brille mit einem Preis von 299 Euro \cite{faq} noch erschwinglich. Die frei erhältliche SDK enthält außerdem einen Emulator, wodurch ein Brillenkauf für Entwicklungszwecke nicht von Anfang an zwangsläufig notwendig ist \cite{SDK}.\\
-Die Brille wird durch die Bluetooth-Technik mit einem Mobiltelephon verbunden und Projeziert Texte und einfache Grafiken in der Farbe grün in den Mittelpunkt des Sichtfelds des Anwenders.
-Sie verfügt über ein Touchpad mit drei Eingabeknöpfen, durch die Smartphone-Anwendungen alternativ gesteuert werden können.
+Nach eigener Aussage legt die Firma Wert darauf, eine unauffällige Brille zu produzieren, welche weniger einen Multimedialen Gegenstand als einen generellen Alltagshelfer darstellt \cite{glassup_home_2017}.\\
+So besitzt diese Brille keine Kamera, wie beispielsweise die von Google angebotene Alternative\cite{google_glassescamera_2017}. Eine Kamera gefährdet den Einsatz der Augmented Reality Brille insoweit, dass nach Paragraph 90 des Telekommunikationsgesetzes der Besitz von Gegenständen, "die ihrer Form nach einen anderen Gegenstand vortäuschen oder die mit Gegenständen des täglichen Gebrauchs verkleidet sind und auf Grund dieser Umstände [...] dazu bestimmt sind, das [...] Bild eines anderen von diesem unbemerkt aufzunehmen."\\
+Auch ist die GlassUp Brille mit einem Preis von 299 Euro \cite{glassup_faq_2017} noch erschwinglich. Die frei erhältliche SDK enthält außerdem einen Emulator, wodurch ein Brillenkauf für Entwicklungszwecke nicht von Anfang an zwangsläufig notwendig ist \cite{glassup_sdk_2017}.\\
+Die Brille wird durch die Bluetooth-Technik mit einem Mobiltelephon verbunden und Projeziert Texte und einfache Grafiken in der Farbe grün in den Mittelpunkt des Sichtfelds des Anwenders. Außerdem enthält die Brille einen Beschleunigungssensor, einen Kompass und einen Helligkeitssensor\cite{glassup_devguide_2015}.
+Sie verfügt über ein Touchpad mit drei Eingabeknöpfen, durch die Smartphone-Anwendungen alternativ gesteuert werden können\cite{glassup_devguide_2015}.
 Der niedrige Preis, sowie der kompakte aber ausreichende Funktionsumfang führten zur Entscheidung, diese Brille als erste zu Unterstützen. Erweiterungen zum Unterstützen weiterer Brillen, sind durch den modularen Aufbau der Applikation allerdings ohne weiteres möglich.
 
+\paragraph{Kommunikation mit der GlassUp AR Brille}
+Die Kommunikation mit dem GlassUp Augmented Reality Gerät erfolgt laut der Library Dokumentation durch eine Service-App welche auf einem Smartphone installiert werden muss\cite{glassup_devguide_2015}. Die Kommunikation mit der Service Applikation ist durch die Klasse GlassUpAgent, welche in der GlassUp Support Library enthalten ist abstrahiert\cite{glassup_devguide_2015}. Über ein Objekt dieser Klasse kann durch die Methode sendConfiguration() ein zu verwendendes Layout spezifiziert werden (Nur Bild, Bild und Text, Vier Bilder, Nur Text). Nachdem ein Layout definiert wurde können Nachrichten über die Methode sendContent() an die Service Applikation gesendet werden, welche die Daten an die Brille weiterleitet. Die Service Applikation verwaltet den Zugriff auf das AR-Gerät von verschiedenen Applikationen gleichzeitig und ebenfalls die Benachrichtigung über User-Interaktionen wie beispielsweise das drücken eines Buttons auf dem Touchpad der Brille.\\
+Die Klasse GlassUpAgent bietet auch Schnittstellen für ConnectionListener, EventListener und ContentResultListener.
+Der erste wird bei einer Änderung des Verbindungszustands benachrichtigt, der als zweites genannte beim Vorkommen einer User-Interaktion und der ContentResultListener erhält Rückgabedaten eines Darstellungsvorgangs.
+
+\paragraph{Anpassungen an der GlassUpAgent Klasse zum Support von Android 5.0+}
+Die Klasse GlassUpAgent der GlassUp Support Library abstrahiert die Kommunikation einer Applikation mit der GlassUp Service Applikation. Daten werden an die Service Applikation gesendet indem sogenannte Intents gestartet werden. Intents sind Objekte, die zum Datenaustausch zwischen verschiedenen Anwendungen verwendet werden. So können beispielsweise bestimmte Funktionalitäten einer anderen Applikation durch ein Intent-Objekt ausgeführt werden\cite{android_intents_2017}.
+Ein Intent-Objekt zum starten eines neuen Services enthält eine String zur Identifiktion des Services, welcher im Konstruktor übergeben wird. Außerdem können durch die putExtra()-Methode variable Daten über einen Key->Value Mechanismus übergeben werden, welche vom gefragtem Service ausgelesen werden können.
+Über Context.startService(Intent intent) wird das System aufgefordert den Service mit übergebener ID zu starten.
+Weil nun ein im Hintergrund laufender Service mit der angeforderten ID auf das Request antworten kann, ohne dass das System seine Echtheit überprüfen kann, stellt dieser impliziete Aufruf ein Sicherheitsrisiko dar und es wird deshalb in Android Versionen ab Android 5.0 eine Exception geworfen wenn eine Applikation versucht einen Service durch ein implizietes Intent zu starten \cite{android_services_2017}.
+Innerhalb der Support Library wurden Intents ausschließlich impliziet gestartet:
+\begin{lstlisting}
+//Service ID
+Intent intent = new Intent("glassup.service.action.SEND_AGENT_CONTENT");
+//Extra 
+intent.putExtra("appId", this.context.getPackageName());
+//Extra
+intent.putExtra("contentId", contentId);
+//Extra
+intent.putExtra("layoutId", layoutId);
+//Extra
+intent.putExtra("texts", texts);
+//Extra
+intent.putExtra("images.id", imagesId);
+//Service starten
+this.context.startService(intent); 
+\end{lstlisting}
+
+Die Schwachstelle wurde erst beim Wechsel zu einem neueren Test-Smartphone bekannt. Weil nach der bitte um Änderung der Library keine Antwort der Firma erhalten wurde und kein Library-Update in Aussicht war, war es nötig, die Klasse GlassUpAgentVersionSupport zu implementieren.\\
+Die Klasse enthalt den gesamten dekompilierten byte-code der GlassUpAgent Klasse und wurde um expliziete Intent Calls ergänzt. Für alle Intents wurd somit, um Appcrashes zu verhindern hinzugefügt:
+
+\begin{lstlisting}
+//Service ID
+Intent intent = new Intent("glassup.service.action.SEND_AGENT_CONTENT");
+//BUGFIX:
+//Expliziete Angabe des Packages, in dem sich die Service-Klasse befindet
+intent.setPackage("glassup.service");
+//Extra
+intent.putExtra("appId", this.context.getPackageName());
+//Extra
+intent.putExtra("contentId", contentId);
+//Extra
+intent.putExtra("layoutId", layoutId);
+//Extra
+intent.putExtra("texts", texts);
+//Extra
+intent.putExtra("images.id", imagesId);
+//Service Starten
+this.context.startService(intent); 
+\end{lstlisting}
+
 \paragraph{Der GlassUp-Connector}
+Die Klasse GlassUpConnector ist die Verbindungsklasse der Applikation zur GlassUp Augmented Reality Brille. Sie verbindet sich mit Hilfe der GlassUp Support Library mit dem AR-Gerät.\\
+Der Connector implementiert eine Ableitung der in \nameref{abstractprinter} beschriebenen Klasse AbstractPrinter und implementiert somit indirekt das IConnector Interface. Da ein großer Teil der Funktionalität in der Klasse AbstractPrinter bereits implementiert ist, ergänzt der GlassUpConnector gennante Klasse lediglich um die Methode printMessage(String message) und einige private Hilfsmethoden.\\
+
+\paragraph{Defiziete der GlassUp AR Brille}
+Das in einem voran gegangenen Paragraph bereits beschriebene einfache Interface der GlassUp Brille mit reduzierter Funktionalität besitzt verschiedene Defiziete, welche durch das ergänzen fehlender Funktionalitäten innerhalb der Connector Klasse ausgeglichen werden müssen.
+\begin{enumerate} 
+	\item Beim Darstellen langer Nachrichten: Als lange Nachrichten werden hier Nachrichten bezeichnet, deren Länge über die auf der AR-Brille zur selben Zeit darstellbare Zeichenzahl hinausgeht. Da die Support Library nicht über eine automatische Scrolling-Funktion für lange Nachrichten verfügt, werden lange Nachrichten abgeschnitten, nachdem der Bildschirm vollständig gefüllt ist. Der Overflow geht hierbei verloren.
+	\item Das Anfügen einer zweiten Nachricht an eine schon auf dem Gerät dargestellte, voran gegangene kurze Nachricht ist nicht möglich, da beim Senden einer neuen Nachricht die im Moment dargestellte Nachricht vom Display gelöscht wird um die neue Nachricht darzustellen.
+\end{enumerate}
+
+\paragraph{Erläuterung der Defiziete am Beispiel}
+\begin{enumerate} 
+	\item
+Annahme: Ein Sprache zu Text Konvertierungsmodul sendet als Teilergebnis die Zeichenkette
+\begin{addmargin}[1cm]{0cm}
+	\textit{"Dieser Testsatz ist ziemlich lange um ein möglichst großes Teilergebnis innerhalb der Sprach zu Text Umwandlung zu generieren, welches die Augmented Reality Brille der Firma GlassUp an ihre funktionalen Grenzen bringt"}
+\end{addmargin}
+an den Connector. \\
+Die GlassUp AR Brille verfügt einen Darstellungsraum von 6 Zeilen von je 17 Zeichen. Worte, welche über ein Zeilenende hinaus reichen werden in die darauf folgende Zeile gedruckt, ist ein Wort länger als eine ganze Zeile, wird es am Zeilenende ohne Berücksichtigung der Silbentrennung getrennt.\\
+Unter berücksichtigung dieser Regeln wäre der auf der Brille dargestellte Text folgender:
+\begin{addmargin}[1cm]{0cm}
+		\textit{Dieser Testsatz\\
+	ist ziemlich \\
+	lange um ein \\
+	möglichst großes\\
+	Teilergebnis \\
+	innerhalb der Spr
+}
+\end{addmargin}
+\item
+Annahme: Ein Sprache zu Text Konvertierungsmodul sendet als Teilergebnis die Zeichenkette 
+\begin{addmargin}[1cm]{0cm}
+	\textit{"Hallo"}
+\end{addmargin}
+an den Connector.\\
+In einem zeitlich vernachlässigbaren Abstand empfängt der Connector eine weiter Zeichenkette
+\begin{addmargin}[1cm]{0cm}
+	\textit{"Wie geht es dir"}
+\end{addmargin}
+.\\
+Durch Die Service Applikation ist für den User global einstellbar, wie lange Text auf dem GlassUp Augmented Reality Device angezeigt werden soll. Nach dieser Zeit wird der Text wieder gelöscht. Ein User würde von daher nun bei einer gewählten Anzigezeit folgendes erwarten: \\
+\begin{addmargin}[1cm]{0cm}
+	 Sekunde 1:\\
+	\textit{Hallo} \\
+	-----------------------\\
+	Sekunde 2:\\
+	\textit{Hallo \\
+	Wie geht es dir \\}
+	-----------------------\\
+	Sekunde 3:\\
+	\textit{Hallo \\
+	Wie geht es dir \\}
+	-----------------------\\
+	Sekunde 4:\\
+	\textit{Wie geht es dir \\}
+	-----------------------\\
+	Sekunde 5:\\
+	\textit{\\}
+\end{addmargin}
+
+Statdessen sieht ein Benutzer aber:
+\begin{addmargin}[1cm]{0cm}
+ Sekunde 0,5 [Blinkt nur kurz auf]:\\
+\textit{Hallo} \\
+-----------------------\\
+Sekunde 1:\\
+\textit{Wie geht es dir \\}
+-----------------------\\
+...
+\end{addmargin}
+
+\end{enumerate}
+
+\paragraph{Definition des Soll-Zustandes}
+Durch die GlassUpConnector Klasse soll beschriebenem Verhalten entgegengewirkt werden. Die genauen Anforderungen an die Brille sind folgende:
+\begin{enumerate}
+	\item Wird ein zu langer Text gesendet, so soll der bedruckbare Bereich der Brille einmal ganz gefüllt werden. Der weitere noch zu sendende Text soll dann Zeile für Zeile unten angefügt werden, während am oberen Ende immer eine Zeile verschwindet, so dass ein durchgehender "Flow" entsteht.
+	\item Wird nach einer kurzen Nachricht, eine weitere Nachricht gesendet, so soll die kurze vorangegangene Nachricht nicht direkt vom Bildschirm gelöscht werden. Vielmehr soll auch in diesem Fall das Display upgedated werden und der dargestellte String um die neue Nachricht ergänzt werden, soweit dies möglich ist, sind die Nachrichten in zusammengefügtem Zustand zu lang für das Display soll wieder ein "Flow" gestartet werden.
+\end{enumerate}
+\paragraph{Erfüllung des Soll-Zustandes}
+Um diesen Soll-Zustand zu erfüllen, muss die GlassUpConnector Klasse über eine eigene Logik beim Senden von Nachrichten verfügen.\\
+Die Klasse muss ankommende Nachrichten selbst in Zeilen teilen und muss über einen Zeilenbuffer verfügen, an den Zeilen angefügt werden können, gleichzeitig aber auch am forderen Ende Elemente wieder  entnommen werden können.\\
+Durch die Vater-Klasse AbstractPrinter wird definniert, dass beim eintreffen einer neuen Nachricht die Methode printMessage(String nachricht) aufgerufen wird. Diese Methode ist im GlassUpConnector zwar implementiert, druckt die Nachricht allerdings nicht direkt auf der Brille aus, sondern ruft die private Methode addMessageToLineList(String nachricht) auf, welche die Nachricht, im folgenden messageBuffer genannt, in einzelne Zeilen teilt und diese der String-Liste linesToPrint hinzufügt.
 
 
-
-
-
+\paragraph{Die addMessageToLineList-Methode}
+Im folgenden ist der Algorithmus dargestellt, welcher eine Nachricht in einzelne Zeilen zerlegt.\\
  \begin{lstlisting}
 [caption={Die Methode addMessageToLineList(String Message) der Klasse GlassUpPrinter}\label{lst:GlassUpPrinter: addMessageToLineList(String message)},captionpos=t] 
 /**
-* method takes a message and splits it in lines of 16 chars
+* method takes a message and splits it in lines of 17 chars
 * to be printed to the AR device. The lines are added to this.linesToPrint
 * @param messageBuffer
 */
 private boolean addMessageToLineList(String messageBuffer){
-int counter = 0;
+	int counter = 0;
 
-if(messageBuffer == null){
-return false;
-}
+	if(messageBuffer == null){
+		return false;
+	}
 
-while(counter < messageBuffer.length()) {
+	while(counter < messageBuffer.length()) {
 
-if (messageBuffer.length() - (counter + 17) <= 0) {
-//rest of buffer is smaller than one line, -> prepare buffer and send
-//then break
-this.linesToPrint.add(messageBuffer.substring(counter));
-break;
-}
-//after 17 signs there is a space --> perfect line
-if (messageBuffer.charAt(counter + 17) == ' ') {
-this.linesToPrint.add(messageBuffer.substring(counter, counter + 18));
-counter += 18;
-} else {
-//check next ' ' before 17
-boolean foundSpace = false;
+		if (messageBuffer.length() - (counter + 17) <= 0) {
+			//rest of buffer is smaller than one line, -> prepare buffer and send
+			//then break
+			this.linesToPrint.add(messageBuffer.substring(counter));
+			break;
+		}
+		//after 17 signs there is a space --> perfect line
+		if (messageBuffer.charAt(counter + 17) == ' ') {
+			this.linesToPrint.add(messageBuffer.substring(counter, counter + 18));
+			counter += 18;
+		} else {
+			//check next ' ' before 17
+			boolean foundSpace = false;
 
-for (int i = counter + 17; i > counter; i--) {
-//space found?
-if (messageBuffer.charAt(i) == ' ') {
-this.linesToPrint.add(messageBuffer.substring(counter, i+1));
-counter = i + 1;
-foundSpace = true;
-break;
-}
-}
+			for (int i = counter + 17; i > counter; i--) {
+				//space found?
+				if (messageBuffer.charAt(i) == ' ') {
+					this.linesToPrint.add(messageBuffer.substring(counter, i+1));
+					counter = i + 1;
+					foundSpace = true;
+					break;
+				}
+			}
 
-//check if a space was found in the line
-if (!foundSpace) {
-//if no space in whole line just break on letter 17
-this.linesToPrint.add(messageBuffer.substring(counter, counter+17));
-counter += 17;
-}
-}
-}
+			//check if a space was found in the line
+			if (!foundSpace) {
+				//if no space in whole line just break on letter 17
+				this.linesToPrint.add(messageBuffer.substring(counter, 	counter+17));
+				counter += 17;
+			}
+		}
+	}
 return true;
 }
 \end{lstlisting}
+
+\underline{Erläuterungen:}\\
+Innerhalb der while-Schleife tastet die Variable Counter die gesamte Nachricht ab.\\
+Beim Zeichen mit Index 0 angefangen, wird in der ersten If-Clause überprüft, ob der Buffer länger als eine Zeilenlänge ist.
+Ist messageBuffer.length - (counter + 17) kleiner oder gleich 0, so sind die übrigen abzuarbeitenden Zeichen im Buffer weniger, als eine darstellbare Zeile und können dem Zeilenbuffer hinzugefügt werden, durch this.linesToPrint.add( messageBuffer.substring( counter )). Danach wird die while-Schleife durch break beendet.\\
+Ist die Zahl der noch abzuarbeitenden Zeichen größer als eine Zeilenlänge, wird die zweite If-Clause erreicht.\\
+Diese überprüft ob sich an der Stelle counter + 17, also am 18. Zeichen, da die charAt(int i)-Methode das erste Zeichen bei Index 0 findet, ein Leerzeichen befindet. Ist dies der Fall, endet ein Wort genau am Zeilenende und alle Zeichen zwischen counter und counter+18 können als String der Liste linesToPrint hinzugefügt werden.\\
+Ist auch dies nicht der Fall, muss nach dem nächsten Leerzeichen von counter+17 anfangend in Richtung counter gesucht werden.
+Dies geschieht durch eine for-Schleife.
+Wird innerhalb der for-Schleife ein Leerzeichen gefunden, werden alle Zeichen von counter bis Zeichen i der Zeilenliste linesToPrint hinzugefügt, die Hilfsvariable foundSpace auf true gesetzt und die for-Schleife beendet.\\
+Ereicht die for-Schleife das Ende, ohne ein Leerzeichen zu finden, bedeutet dies, dass das Wort länger als eine Zeile ist und somit über zwei Zeilen verteilt werden muss.\\
+So wird, wenn foundSpace false ist, das Wort nach 17 Zeichen hart getrennt und alle Zeichen zwischen counter und counter + 17 als String dem Zeilenbuffer hinzugefügt.\\
+Immer nach der Abarbeitung der Zeichen einer Zeile, wird der counter um die entsprechende Zeichenzahl erhöht, um im nächsten Schleifen-Durchlauf mit dem erhöhten counter zu beginnen.
+
+\paragraph{Die sendLinesToGlassUp-Methode}
+Durch die bishher erläuterten Funktionalitäten werden Nachrichten, die vom Sprache zu Text Konvertierungsmodul an den GlassUpConnector gesendet werden, innerhalb der AbstractPrinter Klasse einem Buffer hinzugefügt. Ein Thread innerhalbt der ApstarctPrinter Klasse, welcher ständig prüft ob der Buffer neue Nachrichten enthält, bemerkt die Nachricht und ruft die Methode printMessage der Subklasse GlassUpConnector auf. In dieser Methode wird die Nachricht durch die Hilfsmethode addMessageToLineList in Zeilen aufgeteilt und eine String-Liste hinzugefügt.\\
+Der noch fehlende Teil ist eine Methode, welche immer wenn Zeilen in der Liste sind, alle Zeilen der Liste, höchstens jedoch sech Zeilen, zu einem String zusammen fügt und diese an die GlassUp Service Applikation sendet, welche sie auf der Brille abbildet. Diese Funktionalität wird in der Methode sendLinesToGlassUp() implementiert.\\
+Die Methode wird innerhalb der von AbstractPrinter überschriebenen startPrinting() Methode in einem eigenen Thread gestartet, nachdem super.startPrinting() ausgeführt wurde. Innerhalb der sendLinesToGlassUp-Methode wird eine while-Schleife durchlaufen, solange bis die Aufnahme beendet wurde  und sich keine Zeilen mehr in der Liste linesToPrint befinden.\\
+
+\paragraph{Der Connection Listener}
+Durch den Connection Listener wird die Applikation über Änderungen des Verbindungszustands des GlassUp AR Gerätes mit dem Smartphone  benachrichtigt. Bricht die Verbindung während einer Konvertierung ab, wird der Konvertierungsvorgang beendet und der User über den Verbindungsabbruch informiert. Wird der GlassUp Connector ausgewählt ohne, dass eine Verbindung zum GlassUp Gerät besteht, ist der Button zum Starten einer Konvertierung deaktiviert, bis eine Verbindung hergestellt wurde.
+
+\paragraph{Der GlassUp Emulator}
+Alle Entwicklungsarbeiten und Tests wurden mit Hilfe des von GlassUp als Teil der GlassUp SDK zur Verfügung gestellten Emulators durchgeführt \cite{glassup_emulator_2017}.
+Der Emulator muss auf einem Computer installiert werden, welcher sich im gleichen Netzwerk wie das Testsmartphone befindet. Mittels der Service Application, welche ebenfalls Teil der SDK ist und auf dem Testsmartphone installiert werden muss, verbindet sich das Mobiltelefon automatisch mit dem GlassUp Augmented Reality Brillen Emulator.
+
 %Algorithmus zur formatierung
 \section{Der TextField Printer}
