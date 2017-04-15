@@ -52,7 +52,7 @@
     <requires type="static">
       <file>blx-dm.def</file>
       <file>blx-compat.def</file>
-      <file>biblatex.def</file>
+      <file>biblatex_.def</file>
       <file>alphabetic-verb.bbx</file>
       <file>alphabetic.bbx</file>
       <file>standard.bbx</file>
@@ -83,6 +83,7 @@
     </requires>
     <requires type="editable">
       <file>bibliographie.bib</file>
+      <file>bibliographie_glassup.bib</file>
     </requires>
   </external>
 </requests>
