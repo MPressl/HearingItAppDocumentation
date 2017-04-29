@@ -210,6 +210,87 @@
       \verb https://github.com/GlassUp/Sdk/blob/master/Docs/GlassUp%20Developer%20Guide-Android.pdf
       \endverb
     \endentry
+    \entry{google_apis_2017}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={{Google}},
+           family_i={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \field{labelalpha}{Goo}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{API Documentation for the Google Cloud Speech API, which enables a client to convert speech to text}
+      \field{journaltitle}{Google Cloud Platform}
+      \field{title}{{APIs} \& {Reference} {|} {Google} {Cloud} {Speech} {API} {Documentation}}
+      \field{urlday}{15}
+      \field{urlmonth}{04}
+      \field{urlyear}{2017}
+      \verb{file}
+      \verb Snapshot:files/46/apis.html:text/html
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/speech/docs/apis
+      \endverb
+    \endentry
+    \entry{google_authenticating_2017}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={{Google}},
+           family_i={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \field{labelalpha}{Goo}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{API Documentation for the authentication proccess clients have to follow in order to authenticate at the google cloud}
+      \field{journaltitle}{Google Cloud Platform}
+      \field{title}{Authenticating to a {Cloud} {API} {Service} {|} {Google} {Cloud} {Speech} {API} {Documentation}}
+      \field{urlday}{15}
+      \field{urlmonth}{04}
+      \field{urlyear}{2017}
+      \verb{file}
+      \verb Snapshot:files/50/auth.html:text/html
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/speech/docs/common/auth
+      \endverb
+    \endentry
+    \entry{google_package_2017}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8b36e9207c24c76e6719268e49201d94}{%
+           family={{Google}},
+           family_i={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
+      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
+      \field{labelalpha}{Goo}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{extraalpha}{3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Documentation of the google.cloud.speech,v1beta1 library, which contains the functions for a client to use in order to make use of the remote procedure protocol access to the Google Cloud Speech API}
+      \field{journaltitle}{Google Cloud Platform}
+      \field{title}{Package google.cloud.speech.v1beta1 {|} {Google} {Cloud} {Speech} {API}}
+      \field{urlday}{15}
+      \field{urlmonth}{04}
+      \field{urlyear}{2017}
+      \verb{file}
+      \verb Snapshot:files/48/google.cloud.speech.html:text/html
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/speech/reference/rpc/google.cloud.speech.v1beta1
+      \endverb
+    \endentry
     \entry{google_glassescamera_2017}{misc}{}
       \name{author}{1}{}{%
         {{hash=1d5920f4b44b27a802bd77c4f0536f5a}{%
@@ -265,9 +346,7 @@
       \keyw{Computers / Computer Graphics,Computers / Security / General,Computers / Virtual Worlds}
     \endentry
   \endsortlist
-  \missing{faq}
-  \missing{home}
-  \missing{at_076}
+  \missing{Recording Optionen}
 \endrefsection
 \endinput
 

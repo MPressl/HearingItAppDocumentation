@@ -37,7 +37,6 @@ while (isRecording) {
 	
 }
 \end{lstlisting}
-
 \paragraph{Begrifflichkeiten}
 Die im Konstruktor übergebenen Daten sind die Audioquelle, das Sampling, die Anzahl der Channels, das Encoding und die Buffergröße.\\
 Die Audio Quelle ist das Gerät, von welchem Ton aufgezeichnet werden soll und die Anzahl der Channels gibt an, über wie viele Kanäle der Ton aufgenommen wird (Mono, Stereo, usw).\\
@@ -55,6 +54,11 @@ Speichergröße = 16 000 	  * \frac{16}{8} 	  * 0,8  = 25 600 Byte
 Nun kann also entweder ein Byte Array mit größe 25 600 an den AudioRecord übergeben werden, oder aber ein Short Array mit der halben größe, da  ein Short-Wert eine größe von 2 Byte hat.\\
 
 \paragraph{Funktionaler Aufbau des Voice Recorders}
+\begin{wrapfigure}{r}{0.4\linewidth}
+	\includegraphics[width=\linewidth]{../images/VoiceRecorder.JPG}
+	\caption{UML Klassendiagramm der Klasse VoiceRecorder}
+	\label{fig:VoiceRecorder}
+\end{wrapfigure}
 Nachdem die Option Google Speech Conversion im User Interface gewählt wurde, wird durch die RecorderFactory Klasse eine Instanz des VoiceRecorders erzeugt. Im Konstruktor werden sowohl ein AudioRecord Objekt, als auch ein GoogleSpeechConverter Objekt, welches im Verlauf noch näher erläutert wird, inizialisiert. Danach steht der Recorder zur Verwendung bereit. \\
 Wird im User Interface der Button zum starten der Konvertierung gedrückt, ruft die Klasse MainActivity die Methode startRecording() des Recorders auf. Innerhalb dieser Methode wird die Methode readAudioInput() der eigenen Klasse in einem eigenen Thread gestartet.\\
 ReadAudioInput() setzt das Attribut isRecording auf true und beginnt eine while-Schleife, mit isRecording = false als Abbruchskriterium. Innerhalb der Schleife wird pro Durchlauf ein AudioBuffer mit Audio Daten gefüllt. Der Audio Buffer ist vom Typ short[]. Dieser Buffer wird der MainActivity-Methode showSoundAnimation übergeben, welche in Abhängigkeit der aus den Daten errechneten Lautstärke eine Animation erzeugt, um die laufende Aufnahme für den Benutzer zu visualisieren.\\
@@ -90,7 +94,7 @@ Innerhalb der shutdown() Methode, welche beim Wechsel der Aufnahmemethode zu ein
 Der GoogleSpeechConverter ist der mit der Google Speech API kommunizierende Modulteil. Er sendet Audio Daten und empfängt die Konvertierungsergebnisse, welche er dann an die MainActivity Klasse weitergibt, die diese an einen AR-Connector weiterleitet. Um den Aufbau der GoogleSpeechConverter Klasse darzustellen wird im folgenden zunächst die API der Google Cloud Funktion für Sprachkonvertierung erläutert. Im Anschluss wird auf die Implementierung innerhalb der Applikation eingegangen. 
 
 \paragraph{Die Google Cloud Speech API}
-Zum Zugriff auf die Google Cloud Speech API bestehen drei Möglichkeiten \cite{API Doc}:
+Zum Zugriff auf die Google Cloud Speech API bestehen drei Möglichkeiten \cite{google_apis_2017}:
 \begin{enumerate}
 	\item Synchrone Konvertierung\\
 	Im ersten Fall wird eine Audiodatei an Google gesendet, welche konvertiert wird. Erst nach Abschluss des Konvertierungsvorgangs erhält der Client eine Antwort in Form eines JSON Strings, welcher den erkannten gesprochenen Text enthält.
@@ -101,14 +105,14 @@ Zum Zugriff auf die Google Cloud Speech API bestehen drei Möglichkeiten \cite{A
 	Die Audiodaten müssen hierfür in nahezu Echtzeit gesendet werden. Dies bedeutet, dass in jeder Sekunde nach Start der Konvertierung, Audiodaten einer Sekunde beim Google Server eingegangen sein müssen. Dies macht deutlich, dass die Übertragungsgeschwindigkeit hierbei eine große Rolle spielt. Werden vom Client im Abstand von 0,5 Sekunden Audiopakete mit Audiodaten der letzen 0,5 Sekunden gesendet, diese Pakete benötigen allerdings, aufgrund schlechter Übertragunsgeschwindigkeit 4 Sekunden zur Übertragung, erhält der Google Server lediglich alle 4 Sekunden Audio Daten von 0,5 Sekunden, wojdurch ein Konvertieren nicht mehr möglich ist.
 \end{enumerate}
 \paragraph{Authentifizierung bei der Google Speech API}
-Laut Googles API Dokumentation ist die sicherste Variante der Authentifizierung bei der Google Cloud die Authentifizierung durch einen Service Account. \cite{ https://cloud.google.com/speech/docs/common/auth}. Ein Service Account ist ein Google Account, über den durch Apps Google Services genutzt werden können. Zur Authentifizierung bei einem Account dient ein asynchrones Private-Public-Key-Verfahren. Nachdem Anlegen des Accounts, genereiert ein Entwickler zunächst ein Service Account Key-Paar in Form von JSON Strings. Der Key kann für eine oder mehrere Google APIs zugelassen werden. Im Falle dieses Projekts wurde er auf die Speech API beschränkt um Missbrauch zu vermeiden. Der JSON String wird als Datei im Projekt hinterlegt. Bei der Authentifizierung generiert Google ein syncrones Auth-Token, welches in der weiteren Kommunikation zur Identifikation des Authotisierten Clients.\\
+Laut Googles API Dokumentation ist die sicherste Variante der Authentifizierung bei der Google Cloud die Authentifizierung durch einen Service Account. \cite{google_authenticating_2017}. Ein Service Account ist ein Google Account, über den durch Apps Google Services genutzt werden können. Zur Authentifizierung bei einem Account dient ein asynchrones Private-Public-Key-Verfahren. Nachdem Anlegen des Accounts, genereiert ein Entwickler zunächst ein Service Account Key-Paar in Form von JSON Strings. Der Key kann für eine oder mehrere Google APIs zugelassen werden. Im Falle dieses Projekts wurde er auf die Speech API beschränkt um Missbrauch zu vermeiden. Der JSON String wird als Datei im Projekt hinterlegt. Bei der Authentifizierung generiert Google ein syncrones Auth-Token, welches in der weiteren Kommunikation zur Identifikation des Authotisierten Clients.\\
 
 \paragraph{OAuth Authentifizierung in Java}
 Der sich authentifizierende Client verwendet einen InputStream um den im Projekt hinterlegten Key einzulesen. Er initialisiert ein Objekt der Klasse GoogleCredentials, welche im Package com.google.auth.oauth2 der Library com.google.auth:google-auth-library-oauth2-http:0.3.0 zu finden ist, und weißt ihm den Key-String zu. Dem GoogleCredentials Objekt wird ein Scope hinzugefügt, also ein Ziel, für welches die Credentials bestimmt sind. In diesem Fall ist das https://www.googleapis.com/auth/cloud-platform.\\
 Durch die Klasse OkHttpChannelProvider und OkHttpChannelBuilder der Library io.grpc:grpc-okhttp, kann ein ManagedChannel Objekt erzeugt werden, welchem das zuvor generierte GoogleCredentials als parameter hinzugefügt wird. Das Objekt der Klasse ManagedChannel abstrahiert die Authentifizierung bei Google und stellt eine Verbindung zur Google API her. Jede Kommunikation mit der API erfolgt über diesen Channel.
 
 \paragraph{Die Google Speech RPC API}
-Zum Zugriff auf Funktionen der Speech API, werden zwei Optionen Angeboten: Zugriff via REST und Zugriff via RPC. Da die REST API nur für non-Streaming Use Cases verwendet werden kann, wird in diesem Projekt von der RPC API gebrauch gemacht \cite{https://cloud.google.com/speech/docs/apis}. Zugriffe über das Remote Procedure Call Protokoll bieten sich in diesem Fall an, da durch Remote Procedures bidirektionales Streaming ermöglich wird, während ein Client bei REST Zugriffen nach dem senden einer Http-Anfrage so lange wartet, bis eine Antwort eintrifft. Für Streaming während in festen Abständen immer wieder neue Audiodaten gesendet werden, ist es wichtig, dass die Antworten über einen zweiten Stream asynchron empfangen werden können. Auf RPC Methoden der Google Speech Cloud kann in Java durch die Library google.cloud.speech.v1beta1 zugegriffen werden. Die RPC Schnittstelle von Google wird auch gRPC API genannt \cite{tps://cloud.google.com/speech/docs/apis}.\\
+Zum Zugriff auf Funktionen der Speech API, werden zwei Optionen Angeboten: Zugriff via REST und Zugriff via RPC. Da die REST API nur für non-Streaming Use Cases verwendet werden kann, wird in diesem Projekt von der RPC API gebrauch gemacht \cite{google_apis_2017}. Zugriffe über das Remote Procedure Call Protokoll bieten sich in diesem Fall an, da durch Remote Procedures bidirektionales Streaming ermöglich wird, während ein Client bei REST Zugriffen nach dem senden einer Http-Anfrage so lange wartet, bis eine Antwort eintrifft. Für Streaming während in festen Abständen immer wieder neue Audiodaten gesendet werden, ist es wichtig, dass die Antworten über einen zweiten Stream asynchron empfangen werden können. Auf RPC Methoden der Google Speech Cloud kann in Java durch die Library google.cloud.speech.v1beta1 zugegriffen werden. Die RPC Schnittstelle von Google wird auch gRPC API genannt \cite{google_apis_2017}.\\
 Folgende Funktionen werden von der RPC API angeboten:\\
 \begin{enumerate}
 	\item Das Interface Speech definiert, dass eine rpc Anfrage StreamingRecognize mit einem StreamingRecognizeRequest als Anfrage mit einem StreamingRecognizeResponse Objekt antwortet.
@@ -118,9 +122,14 @@ Folgende Funktionen werden von der RPC API angeboten:\\
 	\item Alle weiteren StreamingRecognizeRequests enthalten nur noch audio\_content, in Form eines byte Arrays von Audio Daten, welchen im zuvor spezifizierten Format codiert sind.
 	\item Auf jede StreamingRecognize Anfrage antwortet der Server mit einem StreamingRecognizeResponse Objekt in einem gesonderten Stream. Die StreamingRecognizeResponse ist ein JSON String. Dieser kann Flags zum hinweis auf den Beginn oder die Beendigung der Konvertierung enthalten. Innerhalb einer Konvertierung enthält der String ein oder mehrere alternatives Objekte. Diese bestehen aus einem "transcript"-Wert, also einer Übersetzung und einer "stability", also der Wahrscheinlichkeit mit der die Übersetzung korrekt ist. Die alternatives Objekte sind in absteigender Wahrscheinlichkeit sortiert.\\
 	ein is\_final: true flag gibt an, dasss die Übersetzte Phrase nun final übersetzt wurde und sich nicht mehr ändert. Setzt man alle Ergebnisse, die dieses Flag enthalten zusammen, erhält man das Gesamtergebnis. Wurde der interim\_results Parameter innerhalb der RecognitionConfig auf false gesetzt, werden nur finale Ergebnisse mitgeteilt.
-\end{enumerate} \cite{https://cloud.google.com/speech/reference/rpc/google.cloud.speech.v1beta1}
+\end{enumerate} \cite{google_package_2017}
 
 \paragraph{Implementierung des Google Speech API Zugriffes}
+\begin{wrapfigure}{l}{0.6\linewidth}
+	\includegraphics[width=\linewidth]{../images/GoogleSpeechConverter.JPG}
+	\caption{UML Klassendiagramm der Klasse GoogleSpeechConverter}
+	\label{fig:GoogleSpeechConverter}
+\end{wrapfigure}
 Die Funktionen bezüglich des Zugriffs auf die Google Speech API sind in der Klasse GoogleSpeechConverter im package de.dhbw.studienarbeit.hearItApp.recorder.googleSpeechRecognition gebündelt.
 Der zuvor bereits thematisierte VoiceRecorder ruft im Konstruktor die private Methode initializeSpeechConverter() auf. 
 Innerhalb dieser Methode wird eine neue Instanz des GoogleSpeechConverters erzeugt und dem VoiceRecorder als Attribut hinzugefügt.\\

@@ -54,3 +54,8 @@ Die Methode connect() wird nach der Initialisierung einer neuen Connector Instan
 Die startPrinting()-Methode versetzt den Connector in den Ausgabemodus. In diesem Zustand, wartet der Connector auf Nachrichten, die von der MainActivity Klasse durch die Methode addToMessageBuffer() in seinem Nachrichtenspeicher abgelegt werden und sendet diese an das Augmented Reality Gerät.\\
 Die Methode stopPrinting() beendet diesen Zustand und mit der shutdown() Methode wird die Verbindung der App zum Augmented Reality Gerät beendet. Physikalisch kann die Verbindung dennoch weiterbestehen. Andere, Connectorspezifische Aktionen, welche bei Verbindungsende fällig werden, können ebenfalls in der shutdown()-Methode durchgeführt werden.
 \section{Interface für Speech-To-Text-Konvertierer}
+\begin{wrapfigure}{l}{0.6\linewidth}
+	\includegraphics[width=\linewidth]{../images/IRecorder.JPG}
+	\caption{Interface für Speech To Text Konvertierer}
+	\label{fig:IRecorder}
+\end{wrapfigure}

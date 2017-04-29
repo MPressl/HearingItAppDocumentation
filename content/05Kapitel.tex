@@ -15,6 +15,11 @@ Nachdem über das User Interface ein verfügbarer AR-Printer gewählt wurde, erz
 \section{Die Klasse AbstractPrinter}\label{abstractprinter}
 Die Klasse AbstractPrinter implementiert das Interface IPrinter und abstrahiert gemeinsames Verhalten aller AR-Printer. Die Implementierung eines spezifischen AR-Printers erfolgt über die Ableitung dieser Klasse und nicht über das Interface direkt. Dies dient der Vermeidung von Fehlern und der Vereinheitlichung der Arbeitsweise von unterschiedlichen Implementierungen.\\
 \paragraph{Implementierte Methoden}
+\begin{wrapfigure}{l}{0.6\linewidth}
+	\includegraphics[width=\linewidth]{../images/abstractConnector.JPG}
+	\caption{UML Klassendiagramm der Klasse AbstractConnector}
+	\label{fig:AbstractConnector}
+\end{wrapfigure}
 Während der Verbindungsauf- beziehungsweise -abbau geräte- und somit implementierungsspezifisch sind, kann das Verhalten der Methoden startPrinting(), addToMessageBuffer(String message),  und stopPrinting() Geräteübergreifend implementiert werden.\\
 Die Methode addToMessageBuffer(String message) erfüllt die Aufgabe, den übergebenen String zum Message Buffer hinzuzufügen. Der Message Buffer ist durch eine LinkedBlockingQueue realisiert und stellt somit eine Schlange dar, bei der Entnahmen immer am vorderen Ende geschehen und Elemente an ihrem Ende angefügt werden können. Sie arbeitet nach dem First-In-First-Out-Prinzip.\\
 Die Methode startPrinting() erzeugt einen neuen Thread, welcher innerhalb einer eigenen Methode doPrinterJob() eine Schleife solange durchläuft, bis das boolsche Attribut isProcessing auf false gesetzt wurde, was bei Beendigung des Konvertierungsvorgangs der Fall ist.
@@ -23,11 +28,11 @@ Die Methode stopPrinting() setzt das boolsche Attribut isProcessing auf false. D
 \section{Support der GlassUp AR Brille}
 \begin{figure}{\linewidth pt}
 	\includegraphics[width=\linewidth]{../images/glassUpGlasses.JPG}
-	\caption{Die GlassUp Augmented Reality Brille\cite{home}}
+	\caption{Die GlassUp Augmented Reality Brille\cite{glassup_home_2017}}
 	\label{fig:GlassUpGlasses}
 \end{figure}
 \paragraph{Die GlassUp Brille}
-GlassUp ist ein italienisches Unternehmen, welches eine 65 Gramm \cite{faq} schwere Augmented Reality Brille herstellt. Sie ist in \ref{fig:GlassUpGlasses} abgebildet. Die Brille befindet sich zwar noch in der Entwicklung, kann aber alles bieten, was zur Funktionalität unserer Applikation notwendig ist:\\
+GlassUp ist ein italienisches Unternehmen, welches eine 65 Gramm \cite{glassup_faq_2017} schwere Augmented Reality Brille herstellt. Sie ist in \ref{fig:GlassUpGlasses} abgebildet. Die Brille befindet sich zwar noch in der Entwicklung, kann aber alles bieten, was zur Funktionalität unserer Applikation notwendig ist:\\
 Nach eigener Aussage legt die Firma Wert darauf, eine unauffällige Brille zu produzieren, welche weniger einen Multimedialen Gegenstand als einen generellen Alltagshelfer darstellt \cite{glassup_home_2017}.\\
 So besitzt diese Brille keine Kamera, wie beispielsweise die von Google angebotene Alternative\cite{google_glassescamera_2017}. Eine Kamera gefährdet den Einsatz der Augmented Reality Brille insoweit, dass nach Paragraph 90 des Telekommunikationsgesetzes der Besitz von Gegenständen, "die ihrer Form nach einen anderen Gegenstand vortäuschen oder die mit Gegenständen des täglichen Gebrauchs verkleidet sind und auf Grund dieser Umstände [...] dazu bestimmt sind, das [...] Bild eines anderen von diesem unbemerkt aufzunehmen."\\
 Auch ist die GlassUp Brille mit einem Preis von 299 Euro \cite{glassup_faq_2017} noch erschwinglich. Die frei erhältliche SDK enthält außerdem einen Emulator, wodurch ein Brillenkauf für Entwicklungszwecke nicht von Anfang an zwangsläufig notwendig ist \cite{glassup_sdk_2017}.\\
@@ -87,6 +92,11 @@ this.context.startService(intent);
 \end{lstlisting}
 
 \paragraph{Der GlassUp-Connector}
+\begin{wrapfigure}{l}{0.5\linewidth}
+	\includegraphics[width=\linewidth]{../images/GlassUpConnector.JPG}
+	\caption{UML Klassendiagramm der Klasse GlassUpConnector}
+	\label{fig:GlassUpConnector}
+\end{wrapfigure}
 Die Klasse GlassUpConnector ist die Verbindungsklasse der Applikation zur GlassUp Augmented Reality Brille. Sie verbindet sich mit Hilfe der GlassUp Support Library mit dem AR-Gerät.\\
 Der Connector implementiert eine Ableitung der in \nameref{abstractprinter} beschriebenen Klasse AbstractPrinter und implementiert somit indirekt das IConnector Interface. Da ein großer Teil der Funktionalität in der Klasse AbstractPrinter bereits implementiert ist, ergänzt der GlassUpConnector gennante Klasse lediglich um die Methode printMessage(String message) und einige private Hilfsmethoden.\\
 
