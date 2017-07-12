@@ -3,11 +3,16 @@
 
 
 \section{Der Android Speech Recognition Client}
+Der Android Speech Recognition Client verwendet die Androideigene Methode zur Spracherkennung.\\
+Wird der Start Recording Button gedrückt, wird ein so genanntes SPEECH\_RECOGNITION\_INTENT gestartet, welches das Android Spracherkennungsprogramm mit der vom User gewählten Eingabesprache startet.
+Die Android Spracherkennung arbeitet offline und asynchron. Zwar ist die offline Aktivität von vorteil, da der User keine aktive Datenverbindung benötigt, allerdings vermindert die asynchronität des Programms die Usability bei längeren Spracheingaben.\\
+Hat der User die Spracheingabe beendet, wird die gesprochene Sprache in Text konvertiert und das Ergebnis als String an die Methode onReceiveResult() gesendet. Diese Methode überprüft, von welchem Intent das empfangene Ergebnis stammt und ist der Sender die Android Speech Recognition, so wird das Konvertierungsergebnis an die Methode receiveResult der MainActivity übergeben, welche die Darstellung auf dem verbundenem AR-Gerät verwaltet.\\
+Wurde das Ergebnis übergeben, wird die stopRecording Funktionalität gestartet, welche die Applikation wieder in den Zustand vor einer Konvertierung versetzt.
 
 
 \section{Speech-To-Text Konvertierung durch die Google Cloud API}
 \paragraph{Aufbau des Moduls}
-Die Klassen des Google Speech Recognition Moduls befinden sich im package de.dhbw.studienarbeit.hearItApp.recorder.googleSpeechRecognition. Zum aufzeichnen des Tons dient die Klasse VoiceRecorder welche das in XXX beschriebene IRecorder Interface implementiert. Die Klasse VoiceRecorder wird der Klasse MainActivity als Recorder Instanz zugeordnet, wenn im User Interface die Google Speech Recognition als Option gewählt wurde. Sie implementiert die Interface Methoden startRecording(), stopRecording() und shutdown(). In ihrem Konstruktor wird die Klasse GoogleSpeechConverter instanziiert. Diese Klasse ist verantwortlich für die Konvertierung der vom VoiceRecorder aufgenommenen Audiodaten. Sie kommuniziert mit den Google Servern, sendet Audiodaten und empfängt das Konvertierungsergebnis.\\
+Die Klassen des Google Speech Recognition Moduls befinden sich im package de.dhbw.studienarbeit.hearItApp.recorder.googleSpeechRecognition. Zum aufzeichnen des Tons dient die Klasse VoiceRecorder welche das IRecorder Interface implementiert. Die Klasse VoiceRecorder wird der Klasse MainActivity als Recorder Instanz zugeordnet, wenn im User Interface die Google Speech Recognition als Option gewählt wurde. Sie implementiert die Interface Methoden startRecording(), stopRecording() und shutdown(). In ihrem Konstruktor wird die Klasse GoogleSpeechConverter instanziiert. Diese Klasse ist verantwortlich für die Konvertierung der vom VoiceRecorder aufgenommenen Audiodaten. Sie kommuniziert mit den Google Servern, sendet Audiodaten und empfängt das Konvertierungsergebnis.\\
 Diese Komponenten werden im folgenden näher erläutert.
 \\
 
